@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pattern Front End Design</title>
+    <link rel="stylesheet" href="Assets/CSS/menustyle.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="Assets/Favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="Assets/Favicon/favicon.svg" />
+    <link rel="shortcut icon" href="Assets/Favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="Assets/Favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Pattern Front" />
+    <link rel="manifest" href="Assets/Favicon/site.webmanifest" />
+</head>
+
+<body>
+    <div class = "start-page">
+        <h1>PatternFront</h1>
+        <p>Welcome to the PatternFront Application</p>
+
+        <h2>Canvas Settings</h2>
+        <div class="form">
+            <div class="settings">
+                <p>Light/Dark mode</p>
+                <div><input type="radio" id="theme-light" name="theme-light" value="light" text="Light" checked><label for="light-theme">Light</label></div>
+                <div><input type="radio" id="theme-dark" name="theme-dark" value="dark" text="Dark"><label for="dark-theme">Dark</label></div>
+                <p>Pattern Type:</p>
+                <input type="radio" id="pattern-full" name="pattern" value="full" checked>
+                <label for="pattern-full">Full Pattern</label>
+                <input type="radio" id="pattern-halfdrop" name="pattern" value="halfdrop">
+                <label for="pattern-halfdrop">Half-drop pattern</label>
+                <p>Canvas Size:</p>
+                <div class="textbox-right"><label for="width">Width</label><input type="number" id="width" name="width" placeholder="Width (px)" value="800" text="Width"></div>
+                <div class="textbox-right"><label for="height">Height</label><input type="number" id="height" name="height" placeholder="Height (px)" value="600" text="Height"></div>
+            </div>
+            <div class="center-btn"><input type="button" id="submit-settings" value="Submit"></div>
+        </div>
+        <p>Version 0.0.2</p>
+        
+        <script>document.addEventListener('DOMContentLoaded', function() {
+  var submitBtn = document.getElementById('submit-settings');
+  if (submitBtn) {
+    submitBtn.addEventListener('click', function() {
+      var pattern = document.querySelector('input[name="pattern"]:checked');
+      if (!pattern) {
+        alert('Please select a pattern.');
+        return;
+      }
+      var value = pattern.value;
+      if (value === 'full') {
+        window.location.href = './Assets/Pages/full.html';
+      } else if (value === 'halfdrop') {
+        window.location.href = './Assets/Pages/halfdrop.html';
+      }
+    });
+  }
+});</script>
+</body>
+</html>

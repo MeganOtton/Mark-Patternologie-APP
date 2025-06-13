@@ -1,0 +1,1228 @@
+/* Colour Scheme */
+:root {
+    --MenuBGColor: #221F26;
+    --MenuBoxBGColor: #19181C;
+    --BorderColor: #38353B;
+    --LabelColor: #A9A9A9;
+}
+
+/* Main Style */
+body {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    margin: 0;
+    background: #18181a;
+}
+
+/* Base Menu */
+.Menu {
+    width: 320px;
+    min-width: 320px;
+    background: #232228;
+    color: #fff;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.Menu button {
+    margin-bottom: 10px;
+    padding: 10px;
+
+    background-color: var(--MenuBGColor);
+    color: white;
+
+    border: none;
+    cursor: pointer;
+}
+
+/* Canvas Settings Menu */
+.canvas-settings-modal {
+    display: none;
+    position: fixed;
+
+    top: 0;
+    left: 240px; /* Align with the right edge of the menu */
+    bottom: 0;
+    width: 300px;
+    padding: 20px;
+
+    background-color: var(--MenuBGColor);
+    color: white;
+    border-left: var(--BorderColor) solid 2px;
+
+    overflow-y: auto; /* Allow scrolling if content is too long */
+
+    z-index: 1;
+}
+
+.canvas-settings-modal-background {
+    background-color: var(--MenuBoxBGColor);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* text */
+.canvas-settings-modal h2 {
+    font-size: 1.3rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-align: center;
+    font-weight: 100;
+    
+    margin-top: 0px;
+}
+
+.canvas-settings-modal-background h3 {
+    font-size: 1rem;
+    font-weight: 100;
+}
+
+/* Buttons and Inputs */
+.canvas-settings-modal input:not([type="file"]),
+.canvas-settings-modal select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: var(--BorderColor);
+    color: white;
+    border: none;
+    border-radius: 10px;
+}
+
+.pattern-tile-dimensions {
+    display: flex;
+}
+
+.pattern-tile-dimensions input {
+    width: 48%;
+}
+
+.Tile-height-input {
+    margin-left: 5px;
+}
+
+.Tile-width-input {
+    margin-right: 5px;
+}
+
+.Tile-Border-Switch {
+    margin-top: 10px;
+}
+
+.Tile-Border-Switch, .Guidline-Switch, .Symmetry-Switch {
+    appearance: none;
+    font-family: inherit;
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 0;
+    margin: 10px 0;
+    font-size: 1rem;
+    font-weight: 100;
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
+}
+
+.Tile-Border-Switch:hover, .Guidline-Switch:hover, .Symmetry-Switch:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.canvas-settings-modal label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: var(--LabelColor);
+}
+
+.file-input-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+}
+
+.file-input-button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--BorderColor);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    margin-bottom: 0px !important;
+}
+
+.hidden-file-input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    padding: 0px;
+    margin: 0px;
+}
+
+/* Selection Tool Menu */
+.selection-tools-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 240px; /* Align with the right edge of the menu */
+    bottom: 0;
+    width: 300px;
+    padding: 20px;
+    background-color: var(--MenuBGColor);
+    color: white;
+    border-left: var(--BorderColor) solid 2px;
+    overflow-y: auto; /* Allow scrolling if content is too long */
+    z-index: 1;
+}
+
+.selection-tools-modal-background {
+    background-color: var(--MenuBoxBGColor);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* text */
+.selection-tools-modal h2 {
+    font-size: 1.3rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-align: center;
+    font-weight: 100;
+    margin-top: 0px;
+}
+
+.selection-tools-modal-background h3 {
+    font-size: 1rem;
+    font-weight: 100;
+}
+
+/* Buttons and Inputs */
+.selection-tools-modal button {
+    padding: 10px;
+    background-color: var(--BorderColor);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.selection-tools-options {
+    background-color: var(--MenuBGColor);
+    display: flex;
+    justify-content: center;
+
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 15px;
+
+    width: fit-content;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.magicwand {
+    margin-right: 10px;
+}
+
+.selection-tools-options button {
+    margin-bottom: 0px;
+}
+
+.selection-settings-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 10px; /* Adds space between grid items */
+}
+
+.selection-settings-columns button {
+    font-family: inherit;
+    width: 100%; /* Makes buttons fill their grid cell */
+    margin-bottom: 0; /* Removes bottom margin as gap will handle spacing */
+
+    background-color: transparent;
+    font-size: 1rem;
+}
+
+.selection-settings-columns button:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.selection-settings-columns button:last-child {
+    grid-column: 1 / -1; /* Makes the last button span all columns */
+}
+
+/* Brush Tool Menu */
+.brush-tools-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 240px; /* Align with the right edge of the menu */
+    bottom: 0;
+    width: 300px;
+    padding: 20px;
+    background-color: var(--MenuBGColor);
+    color: white;
+    border-left: var(--BorderColor) solid 2px;
+    overflow-y: auto; /* Allow scrolling if content is too long */
+    z-index: 1;
+}
+
+.brush-tools-modal-background {
+    background-color: var(--MenuBoxBGColor);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* text */
+.brush-tools-modal h2 {
+    font-size: 1.3rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-align: center;
+    font-weight: 100;
+    
+    margin-top: 0px;
+}
+
+.brush-tools-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 0 10px; /* Add some padding on the sides */
+    margin-bottom: 10px;
+}
+
+.brush-tools-header h2 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+}
+
+.brush-tools-header button {
+    margin-left: auto; /* Push the button to the right */
+}
+
+.brush-tools-modal-background h3 {
+    font-size: 1rem;
+    font-weight: 100;
+}
+
+.brush-tools-modal-background h4 {
+    font-size: .8rem;
+    font-weight: 100;
+}
+
+.brush-tools-grid {
+    background-color: var(--MenuBGColor);
+    display: flex;
+    justify-content: center;
+
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 15px;
+
+    width: fit-content;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.brush-tools-grid button {
+    margin-bottom: 0px;
+    margin-left: 5px;
+    margin-right: 5px;
+
+    width: 3rem;
+    height: 3rem;
+    border-radius: 10px;
+
+    background-color: var(--BorderColor);
+    color: white;
+    border: none;
+}
+
+.brush-tools-size-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.brush-size-slider {
+    left: auto;
+    right: auto;
+
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.brush-size-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 5px;
+    border-radius: 10px;
+    background: var(--BorderColor);
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    margin-bottom: 15px;
+}
+
+.brush-size-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    margin-top: -7.5px; /* This will center the thumb on the track */
+}
+
+.brush-size-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    margin-top: -7.5px; /* This will center the thumb on the track */
+}
+
+.brush-size-slider::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    background: var(--BorderColor);
+    border-radius: 10px;
+}
+
+.brush-size-slider::-moz-range-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    background: var(--BorderColor);
+    border-radius: 10px;
+}
+
+.color-orb {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100px;
+    height: 100px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+}
+
+.color-orb::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.color-orb::-webkit-color-swatch {
+    border: none;
+    border-radius: 50%;
+}
+
+.color-orb::-moz-color-swatch {
+    border: none;
+    border-radius: 50%;
+}
+
+.color-selection-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.hex-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 20px;
+
+    width: 60%;
+}
+
+.hex-section h4 {
+    margin-bottom: 5px;
+    margin-top: 0px;
+    font-size: 1rem;
+}
+
+.hexColor {
+    border-radius: 10px;
+    height: 30px;
+    padding: 5px 10px;
+    border: 1px solid var(--BorderColor);
+    background-color: white;
+    color: rgb(0, 0, 0);
+
+    width: 80%;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.pallet-selection-bg {
+    background-color: var(--MenuBoxBGColor);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.pallet-selection-bg {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
+    padding: 10px;
+    background-color: var(--MenuBGColor);
+    border-radius: 15px;
+}
+
+.pallet-selection-bg .button {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: none;
+    cursor: pointer;
+    
+    background-color: var(--BorderColor);
+    border-radius: 10px;
+}
+
+.import-brushes-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2.5rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    margin-left: auto; /* This will push the button to the right */
+}
+
+.import-brushes-btn:hover {
+    color: #ccc; /* Optional: changes color on hover for better UX */
+}
+
+.import-brushes-btn:focus {
+    outline: none; /* Removes the focus outline */
+}
+
+/* Eraser Tool Menu */
+.eraser-tools-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 240px; /* Align with the right edge of the menu */
+    bottom: 0;
+    width: 300px;
+    padding: 20px;
+    background-color: var(--MenuBGColor);
+    color: white;
+    border-left: var(--BorderColor) solid 2px;
+    overflow-y: auto; /* Allow scrolling if content is too long */
+    z-index: 1;
+}
+
+.eraser-tools-modal-background {
+    background-color: var(--MenuBoxBGColor);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.eraser-tools-modal h2 {
+    font-size: 1.3rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-align: center;
+    font-weight: 100;
+    
+    margin-top: 0px;
+}
+
+.eraser-tools-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 0 10px; /* Add some padding on the sides */
+    margin-bottom: 10px;
+
+    font-weight: 100;
+
+    white-space: nowrap
+}
+
+.eraser-tools-header h2 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+}
+
+.brush-tools-header button {
+    margin-left: auto; /* Push the button to the right */
+}
+
+.eraser-tools-modal-background h3 {
+    font-size: 1rem;
+    font-weight: 100;
+}
+
+.eraser-tools-modal-background h4 {
+    font-size: .8rem;
+    font-weight: 100;
+}
+
+.eraser-size-slider {
+    left: auto;
+    right: auto;
+
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.eraser-size-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 5px;
+    border-radius: 10px;
+    background: var(--BorderColor);
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    margin-bottom: 15px;
+}
+
+.eraser-size-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    margin-top: -7.5px; /* This will center the thumb on the track */
+}
+
+.eraser-size-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    margin-top: -7.5px; /* This will center the thumb on the track */
+}
+
+.eraser-size-slider::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    background: var(--BorderColor);
+    border-radius: 10px;
+}
+
+.eraser-size-slider::-moz-range-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    background: var(--BorderColor);
+    border-radius: 10px;
+}
+
+.eraser-tools-size-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Fill Tool Menu */
+.fill-tools-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 240px; /* Align with the right edge of the menu */
+    bottom: 0;
+    width: 300px;
+    padding: 20px;
+    background-color: var(--MenuBGColor);
+    color: white;
+    border-left: var(--BorderColor) solid 2px;
+    overflow-y: auto; /* Allow scrolling if content is too long */
+    z-index: 1;
+}
+
+.fill-tools-modal-background {
+    background-color: var(--MenuBoxBGColor);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.fill-tools-modal h2 {
+    font-size: 1.3rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-align: center;
+    font-weight: 100;
+    
+    margin-top: 0px;
+}
+
+.fill-tools-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 0 10px; /* Add some padding on the sides */
+    margin-bottom: 10px;
+
+    font-weight: 100;
+
+    white-space: nowrap
+}
+
+.fill-tools-header h2 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+}
+
+.fill-tools-modal-background h3 {
+    font-size: 1rem;
+    font-weight: 100;
+}
+
+.fill-tools-modal-background h4 {
+    font-size: .8rem;
+    font-weight: 100;
+}
+
+/* Stamp Tool Menu */
+.stamp-tools-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 240px; /* Align with the right edge of the menu */
+    bottom: 0;
+    width: 300px;
+    padding: 20px;
+    background-color: var(--MenuBGColor);
+    color: white;
+    border-left: var(--BorderColor) solid 2px;
+    overflow-y: auto; /* Allow scrolling if content is too long */
+    z-index: 1;
+}
+
+.stamp-tools-modal-background {
+    background-color: var(--MenuBoxBGColor);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.stamp-tools-modal h2 {
+    font-size: 1.3rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-align: center;
+    font-weight: 100;
+    
+    margin-top: 0px;
+}
+
+.stamp-tools-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 0 10px; /* Add some padding on the sides */
+    margin-bottom: 10px;
+
+    font-weight: 100;
+
+    white-space: nowrap
+}
+
+.stamp-tools-header h2 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+}
+
+.stamp-tools-modal-background h3 {
+    font-size: 1rem;
+    font-weight: 100;
+}
+
+.stamp-tools-modal-background h4 {
+    font-size: .8rem;
+    font-weight: 100;
+}
+
+.import-stamp-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2.5rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    margin-left: auto; /* This will push the button to the right */
+}
+
+.import-stamp-btn:hover {
+    color: #ccc; /* Optional: changes color on hover for better UX */
+}
+
+.import-stamp-btn:focus {
+    outline: none; /* Removes the focus outline */
+}
+
+/* Layers Menu */
+
+/* Pallet Options Menu */
+.pallet-tools-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 240px; /* Align with the right edge of the menu */
+    bottom: 0;
+    width: 300px;
+    padding: 20px;
+    background-color: var(--MenuBGColor);
+    color: white;
+    border-left: var(--BorderColor) solid 2px;
+    overflow-y: auto; /* Allow scrolling if content is too long */
+    z-index: 1;
+}
+
+.pallet-tools-modal-background {
+    background-color: var(--MenuBoxBGColor);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.pallet-tools-modal h2 {
+    font-size: 1.3rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-align: center;
+    font-weight: 100;
+    
+    margin-top: 0px;
+}
+
+.pallet-tools-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 0 10px; /* Add some padding on the sides */
+    margin-bottom: 10px;
+
+    font-weight: 100;
+
+    white-space: nowrap
+}
+
+.pallet-tools-header h2 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+}
+
+.pallet-tools-modal-background h3 {
+    font-size: 1rem;
+    font-weight: 100;
+}
+
+.pallet-tools-modal-background h4 {
+    font-size: .8rem;
+    font-weight: 100;
+}
+
+.pallet-count-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0px;
+}
+
+.pallet-count-header h3 {
+    margin-bottom: 0px;
+}
+
+.create-a-new-pallet {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+
+    background-color: var(--MenuBGColor);
+    border-radius: 15px;
+
+}
+
+.create-a-new-pallet h3 {
+    margin-left: 10px;
+}
+
+.new-pallet {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2.5rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    margin-left: auto;
+
+    margin-right: 10px;
+}
+
+.pallet-name-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.pallet-name-header h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 100;
+}
+
+.pallet-name-header .button {
+    background-color: transparent;
+
+    font-size: 0.8rem;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.pallet-name-header .button:hover {
+    background-color: var(--HoverColor);
+}
+
+.pallet-section-bg {
+    background-color: var(--MenuBGColor);
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.pallet-selection-bg-pallet-menu {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
+    border-radius: 15px;
+}
+
+.pallet-selection-bg-pallet-menu .button {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: none;
+    cursor: pointer;
+    
+    background-color: var(--BorderColor);
+    border-radius: 10px;
+}
+
+/* Import Options Menu */
+.import-modal {
+    display: none;
+    position: fixed;
+
+    top: 0;
+    left: 240px; /* Align with the right edge of the menu */
+    bottom: 0;
+    width: 300px;
+    padding: 20px;
+
+    background-color: var(--MenuBGColor);
+    color: white;
+    border-left: var(--BorderColor) solid 2px;
+
+    overflow-y: auto; /* Allow scrolling if content is too long */
+
+    z-index: 1;
+}
+
+.import-modal-background {
+    background-color: var(--MenuBoxBGColor);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* text */
+.import-modal h2 {
+    font-size: 1.3rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-align: center;
+    font-weight: 100;
+    
+    margin-top: 0px;
+}
+
+.import-modal-background h3 {
+    font-size: 1rem;
+    font-weight: 100;
+}
+
+.import-image-btn,
+.paste-image-btn {
+    appearance: none;
+    font-family: inherit;
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 0;
+    margin: 10px 0;
+    font-size: 1rem;
+    font-weight: 100;
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
+    display: block;
+}
+
+.import-image-btn:hover,
+.paste-image-btn:hover,
+.import-image-btn label:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.import-image-btn label {
+    cursor: pointer;
+    display: inline-block;
+    width: 100%;
+}
+
+
+/* Export Options Menu */
+.export-modal {
+    display: none;
+    position: fixed;
+
+    top: 0;
+    left: 240px; /* Align with the right edge of the menu */
+    bottom: 0;
+    width: 300px;
+    padding: 20px;
+
+    background-color: var(--MenuBGColor);
+    color: white;
+    border-left: var(--BorderColor) solid 2px;
+
+    overflow-y: auto; /* Allow scrolling if content is too long */
+
+    z-index: 1;
+}
+
+.export-modal-background {
+    background-color: var(--MenuBoxBGColor);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* text */
+.export-modal h2 {
+    font-size: 1.3rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-align: center;
+    font-weight: 100;
+    
+    margin-top: 0px;
+}
+
+.export-modal-background h3 {
+    font-size: 1rem;
+    font-weight: 100;
+}
+
+.exportasPSD-btn, .exportasPAT-btn, .export-pattern-file-btn,
+.product-mockup-btn {
+    appearance: none;
+    font-family: inherit;
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 0;
+    margin: 10px 0;
+    font-size: 1rem;
+    font-weight: 100;
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
+    display: block;
+}
+
+.exportasPSD-btn:hover, .exportasPAT-btn:hover, .export-pattern-file-btn:hover,
+.product-mockup-btn:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+/* Settings Menu */
+.settings-modal {
+    display: none;
+    position: fixed;
+
+    top: 0;
+    left: 240px; /* Align with the right edge of the menu */
+    bottom: 0;
+    width: 300px;
+    padding: 20px;
+
+    background-color: var(--MenuBGColor);
+    color: white;
+    border-left: var(--BorderColor) solid 2px;
+
+    overflow-y: auto; /* Allow scrolling if content is too long */
+
+    z-index: 1;
+}
+
+.settings-modal-background {
+    background-color: var(--MenuBoxBGColor);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* text */
+.settings-modal h2 {
+    font-size: 1.3rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-align: center;
+    font-weight: 100;
+    
+    margin-top: 0px;
+}
+
+.settings-modal-background h3 {
+    font-size: 1rem;
+    font-weight: 100;
+}
+
+.profile-settings-info-btn, .import-settings-btn, .export-settings-btn, .saveprojectfile-btn {
+    appearance: none;
+    font-family: inherit;
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 0;
+    margin: 10px 0;
+    font-size: 1rem;
+    font-weight: 100;
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
+    display: block;
+}
+
+.profile-settings-info-btn:hover, .import-settings-btn:hover, .export-settings-btn:hover, .saveprojectfile-btn:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.app-profile-settings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 !important; /* Remove vertical margins */
+    padding: 5px 0; /* Add some vertical padding if needed */
+}
+
+.app-profile-settings-header h3 {
+    margin: 0 !important;
+    white-space: nowrap;
+}
+
+.profile-settings-info-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0; /* Remove padding */
+    margin: 0 !important; /* Remove margin */
+    width: auto;
+    line-height: 0px !important; /* Adjust line height to fit the button */
+}
+
+.export-settings-btn, .import-settings-btn {
+    border: 4px solid var(--BorderColor);
+    border-radius: 15px;
+    padding: 5px 10px;
+    margin: 5px;
+    display: inline-block;
+    width: auto;
+    text-align: center;
+}
+
+.app-profile-settings-options {
+    margin-top: 0px;
+    display: flex;
+    justify-content: center;
+}
+
+#canvas-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: #18181a;
+}
+
+/* Drawing Canvas */
+#drawingCanvas {
+    background: #fff;
+    display: block;
+    box-shadow: 0 0 0 2px #18181a;
+}
+
+#gridContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 40px); /* Adjust height to fit the menu */
+    background-color: #1a1a1a;
+}
+
+#gridWrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#gridWrapper canvas {
+    position: absolute;
+    border: 1px solid #444;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}

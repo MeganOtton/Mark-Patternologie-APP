@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pattern Front End Design</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="Assets/Favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="Assets/Favicon/favicon.svg" />
+    <link rel="shortcut icon" href="Assets/Favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="Assets/Favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Pattern Front" />
+    <link rel="manifest" href="Assets/Favicon/site.webmanifest" />
+</head>
+
+<body data-mode="half">
+    <div class="Menu">
+        <button class="button" id="canvasSettingsButton">Canvas Settings</button>
+        <br>
+        <button class="button" id="selectionToolsButton">Selection Tool</button>
+        <button class="button" id="brushToolsButton">Pen Tool</button>
+        <button class="button">Eyedropper</button> <!-- No Modal Required -->
+        <button class="button" id="eraserToolsButton">Eraser Tool</button>
+        <button class="button" id="fillToolsButton" >Fill Tool</button>
+        <button class="button" id="stampToolsButton">Stamp Tool</button>
+        <button class="button">Layers</button> 
+        <button class="button" id="palletToolsButton">Pallet</button>
+        
+        <br>
+
+        <button class="button">Undo</button>  <!-- No Modal Required -->
+        <button class="button">Redo</button>  <!-- No Modal Required -->
+
+        <br>
+
+        <button class="button" id="importButton">Import</button>
+        <button class="button" id="exportButton">Export</button>
+        <button class="button" id="settingsButton">Settings</button>
+
+        <br>
+
+        <button class="button">Switch</button>  <!-- No Modal Required -->  <!-- ADD FUNCTIONALITY -->
+
+
+        <h2>Debug Tool</h2>
+        <div>
+            <button class="button;" id="updateButton" style="color: green;">Updated?</button>
+            <button class="button" id="clearButton">CLEAR</button>
+        </div>
+        <p>Version 0.0.2</p>
+    
+
+
+    </div>
+
+    <div id="canvas-container">
+        <canvas id="drawingCanvas"></canvas>
+    </div>
+    <div id="gridContainer">
+    </div>
+    <div class="Menu">
+   
+    <!--                    MODALS                   -->
+
+    <!--            Canvas Settings Modal            -->
+    <div class="canvas-settings-modal" id="canvasSettingsModal">
+
+        <div class="canvas-settings-modal-background">
+            <h2>Canvas Settings</h2>
+
+            <!-- CHANGE THIS TO THE .PAT -->
+            <div class="file-input-wrapper">
+                <button class="file-input-button">Open Existing Project</button>
+                <input type="file" id="importFile" accept="image/*" class="hidden-file-input">
+            </div>
+
+            <h3>Pattern Tile Dimensions</h3>
+            <div class="pattern-tile-dimensions">
+                <input type="number" id="tileWidth" placeholder="Width (cm)" Class="Tile-width-input">
+                <input type="number" id="tileHeight" placeholder="Height (cm)" Class="Tile-height-input">
+            </div> 
+
+            <h3>Pattern Type</h3>
+            <select id="patternType">
+                <option value="block">Block Pattern</option>
+                <option value="halfDrop">Half Drop Pattern</option>
+                <option value="mirror">Mirror</option>
+            </select>
+
+            <button id="showTileBorder" Class="Tile-Border-Switch">Show Tile Border</button>
+
+            <button id="showGuidelines" Class="Guidline-Switch">Show Guidelines</button>
+
+            <button id="symmetry" Class="Symmetry-Switch">Symmetry</button>    
+            
+        </div>
+
+    </div>
+
+    <!--            Selection Tools Modal            -->
+    <div class="selection-tools-modal" id="selectionToolsModal">
+        <div class="selection-tools-modal-background">
+            <h2>Selection Tools</h2>
+            <div class="selection-tools-options">
+                <button class="button magicwand">Magic Wand</button>
+                <button class="button lasso" >Lasso</button>
+            </div>
+
+            <h2>Selection Settings</h2>
+            <div class="selection-settings-columns">
+                <button class="button">Flip H</button>
+                <button class="button">Flip V</button>
+                <button class="button">Rotate</button>
+                <button class="button">Scale</button>
+                <button class="button">Extract</button>
+                <button class="button">Invert</button>
+                <button class="button">Fill</button>
+                <button class="button">Mask</button>
+                <button class="button">Clear</button>
+            </div>
+        </div>
+    </div>
+
+    <!--            Brush Tool Modal            -->
+    <div class="brush-tools-modal" id="brushToolsModal">
+        <div class="brush-tools-modal-background">
+
+            <div class="brush-tools-header">
+                <h2>Brush Tools</h2>
+                <label for="importFile" class="import-brushes-btn">+</label>
+                <input type="file" id="importFile" accept=".png,.jpg,.jpeg,.svg" class="hidden-file-input">
+                <!-- CHANGE TO ICON -->
+            </div>
+
+            <div class="brush-tools-grid"> 
+                <!-- ADD FUNCTIONALITY -->
+                <button class="button brushes">1</button>
+                <button class="button brushes">2</button>
+                <button class="button brushes">3</button>
+                <button class="button brushes">4</button>
+            </div>
+
+            <h2>Brush Style</h2>
+            <div class="brush-tools-grid"> <!-- ADD FUNCTIONALITY -->
+                <button class="button brushes">1</button>
+                <button class="button brushes">2</button>
+            </div>
+
+            <div class="brush-tools-size-header"> 
+                <h3>Brush Size</h3>
+                <h3 class="brush-size-value" id="brushSizeValue">45px</h3> <!-- ADD FUNCTIONALITY -->
+            </div>
+            <input type="range" id="brushSize" min="1" max="100" value="20" class="brush-size-slider">
+
+            <div class="brush-color-section">
+                <h3>Brush Color</h3>
+
+                <div class="color-selection-container">
+                    <input type="color" id="brushColor" value="#000000" class="color-orb">
+                    <div class="hex-section">
+                        <h4>Hex</h4>
+                        <input type="text" id="hexColor" class="hexColor" placeholder="#000000" maxlength="7">
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Pallet Name</h3> <!-- ADD FUNCTIONALITY -->
+            <div class="pallet-selection-bg">
+                <button class="button color1"></button>
+                <button class="button color2"></button>
+                <button class="button color3"></button>
+                <button class="button color4"></button>
+                <button class="button color5"></button>
+                <button class="button color6"></button>
+                <button class="button color7"></button>
+                <button class="button color8"></button>
+                <button class="button color9"></button>
+                <button class="button color10"></button>
+                <button class="button color11"></button>
+                <button class="button color12"></button>
+                <button class="button color13"></button>
+                <button class="button color14"></button>
+                <button class="button color15"></button>
+                <button class="button color16"></button>
+                <button class="button color17"></button>
+                <button class="button color18"></button>
+                <button class="button color19"></button>
+                <button class="button color20"></button> 
+            </div>
+
+        </div>
+    </div>
+
+    <!--            Eraser Tool Modal            -->
+    <div class="eraser-tools-modal" id="eraserToolsModal">
+        <div class="eraser-tools-modal-background">
+
+            <div class="eraser-tools-header">
+                <h2>Eraser Tools</h2>
+                <label for="importFile" class="import-brushes-btn">+</label>
+                <input type="file" id="importFile" accept=".png,.jpg,.jpeg,.svg" class="hidden-file-input">
+                <!-- CHANGE TO ICON -->
+            </div>
+
+            <div class="brush-tools-grid"> 
+                <!-- ADD FUNCTIONALITY -->
+                <button class="button brushes">1</button>
+                <button class="button brushes">2</button>
+                <button class="button brushes">3</button>
+                <button class="button brushes">4</button>
+            </div>
+
+            <div class="eraser-tools-size-header"> 
+                <h3>Brush Size</h3>
+                <h3 class="eraser-size-value" id="eraserSizeValue">45px</h3> <!-- ADD FUNCTIONALITY -->
+            </div>
+
+            <input type="range" id="eraserSize" min="1" max="100" value="20" class="eraser-size-slider">
+
+
+        </div>
+    </div>
+
+    <!--            Fill Tool Modal            -->
+     <div class="fill-tools-modal" id="fillToolsModal">
+        <div class="fill-tools-modal-background">
+
+            <h2>Fill Tool</h2>
+
+            <div class="fill-color-section">
+                <h3>Brush Color</h3>
+
+                <div class="color-selection-container">
+                    <input type="color" id="brushColor" value="#000000" class="color-orb">
+                    <div class="hex-section">
+                        <h4>Hex</h4>
+                        <input type="text" id="hexColor" class="hexColor" placeholder="#000000" maxlength="7">
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Pallet Name</h3> <!-- ADD FUNCTIONALITY -->
+            <div class="pallet-selection-bg">
+                <button class="button color1"></button>
+                <button class="button color2"></button>
+                <button class="button color3"></button>
+                <button class="button color4"></button>
+                <button class="button color5"></button>
+                <button class="button color6"></button>
+                <button class="button color7"></button>
+                <button class="button color8"></button>
+                <button class="button color9"></button>
+                <button class="button color10"></button>
+                <button class="button color11"></button>
+                <button class="button color12"></button>
+                <button class="button color13"></button>
+                <button class="button color14"></button>
+                <button class="button color15"></button>
+                <button class="button color16"></button>
+                <button class="button color17"></button>
+                <button class="button color18"></button>
+                <button class="button color19"></button>
+                <button class="button color20"></button> 
+            </div>
+
+        </div>
+    </div>
+
+    <!--            Stamp Tool Modal            -->
+    <div class="stamp-tools-modal" id="stampToolsModal">
+        <div class="stamp-tools-modal-background">
+
+            <div class="stamp-tools-header">
+                <h2>Stamp Tool</h2>
+                <label for="importFile" class="import-stamp-btn">+</label>
+                <input type="file" id="importFile" accept=".png,.jpg,.jpeg,.svg" class="hidden-file-input">
+                <!-- CHANGE TO ICON -->
+            </div>
+
+            <div class="brush-tools-grid"> 
+                <!-- ADD FUNCTIONALITY -->
+                <button class="button brushes">1</button>
+                <button class="button brushes">2</button>
+                <button class="button brushes">3</button>
+                <button class="button brushes">4</button>
+            </div>
+
+            <div class="brush-tools-size-header"> 
+                <h3>Brush Size</h3>
+                <h3 class="brush-size-value" id="brushSizeValue">45px</h3> <!-- ADD FUNCTIONALITY -->
+            </div>
+            <input type="range" id="stamp-brushSize" min="1" max="100" value="20" class="brush-size-slider">
+
+            <div class="brush-tools-size-header"> 
+                <h3>Brush Width</h3>
+                <h3 class="brush-width-value" id="stamp-brushwidthValue">45px</h3> <!-- ADD FUNCTIONALITY -->
+            </div>
+            <input type="range" id="brushwidth" min="1" max="100" value="20" class="brush-size-slider">
+
+            <div class="brush-color-section">
+                <h3>Brush Color</h3>
+
+                <div class="color-selection-container">
+                    <input type="color" id="brushColor" value="#000000" class="color-orb">
+                    <div class="hex-section">
+                        <h4>Hex</h4>
+                        <input type="text" id="hexColor" class="hexColor" placeholder="#000000" maxlength="7">
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Pallet Name</h3> <!-- ADD FUNCTIONALITY -->
+            <div class="pallet-selection-bg">
+                <button class="button color1"></button>
+                <button class="button color2"></button>
+                <button class="button color3"></button>
+                <button class="button color4"></button>
+                <button class="button color5"></button>
+                <button class="button color6"></button>
+                <button class="button color7"></button>
+                <button class="button color8"></button>
+                <button class="button color9"></button>
+                <button class="button color10"></button>
+                <button class="button color11"></button>
+                <button class="button color12"></button>
+                <button class="button color13"></button>
+                <button class="button color14"></button>
+                <button class="button color15"></button>
+                <button class="button color16"></button>
+                <button class="button color17"></button>
+                <button class="button color18"></button>
+                <button class="button color19"></button>
+                <button class="button color20"></button> 
+            </div>
+
+        </div>
+    </div>
+    
+    <!--            Layers Modal            -->
+
+
+    <!--            Pallet Modal            -->
+    <div class="pallet-tools-modal" id="palletToolsModal">
+        <div class="pallet-tools-modal-background">
+
+             <h2>Pallet Options</h2>
+                
+            <div class="brush-color-section">
+                <h3>Color</h3>
+
+                <div class="color-selection-container">
+                    <input type="color" id="brushColor" value="#000000" class="color-orb">
+                    <div class="hex-section">
+                        <h4>Hex</h4>
+                        <input type="text" id="hexColor" class="hexColor" placeholder="#000000" maxlength="7">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pallet-count-header">
+                <h3>Pallet Total:</h3> <!-- ADD FUNCTIONALITY -->
+                <h3 class="pallet-count-value" id="palletCountValue">3/5</h3> <!-- ADD FUNCTIONALITY -->
+            </div>
+            
+            <div class="create-a-new-pallet">
+                <h3>Create a Pallet</h3> <!-- ADD FUNCTIONALITY -->
+                <button class="new-pallet">+</button> <!-- ADD FUNCTIONALITY -->
+            </div>
+
+            <div class="pallet-section-bg">
+                <div class="pallet-name-header">
+                    <h3>Pallet Name</h3>
+
+                    <div class="pallet-options">
+                        <button class="button rename-pallet">T</button> 
+                        <!-- ADD ICON & FUNCTIONALITY -->
+
+                        <button class="button edit-pallet">E</button> 
+                        <!-- ADD ICON & FUNCTIONALITY -->
+
+                        <button class="button bin-pallet">D</button> 
+                        <!-- ADD ICON & FUNCTIONALITY -->
+
+                        <button class="button edit-pallet">S</button> 
+                        <!-- ADD ICON & FUNCTIONALITY -->    
+                    </div>
+                    
+                </div>
+
+                <div class="pallet-selection-bg-pallet-menu">
+                    <button class="button color1"></button>
+                    <button class="button color2"></button>
+                    <button class="button color3"></button>
+                    <button class="button color4"></button>
+                    <button class="button color5"></button>
+                    <button class="button color6"></button>
+                    <button class="button color7"></button>
+                    <button class="button color8"></button>
+                    <button class="button color9"></button>
+                    <button class="button color10"></button>
+                    <button class="button color11"></button>
+                    <button class="button color12"></button>
+                    <button class="button color13"></button>
+                    <button class="button color14"></button>
+                    <button class="button color15"></button>
+                    <button class="button color16"></button>
+                    <button class="button color17"></button>
+                    <button class="button color18"></button>
+                    <button class="button color19"></button>
+                    <button class="button color20"></button> 
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--            Import Modal            -->
+    <div class="import-modal" id="importModal">
+
+        <div class="import-modal-background">
+            <h2>Import Options</h2>
+
+            <label for="importFile" class="import-image-btn">Import an Image</label>
+            <input type="file" id="importFile" accept=".png,.jpg,.jpeg,.svg" class="hidden-file-input">
+
+            <button id="pasteImageBtn" class="paste-image-btn">Paste Image from Clipboard</button>
+            <!-- ADD FUNCTIONALITY --> 
+            
+        </div>
+
+    </div>
+
+    <!--            Export Modal            -->
+    <div class="export-modal" id="exportModal">
+
+        <div class="import-modal-background">
+            <h2>Export Options</h2>
+
+            <button id="exportasPSD" class="exportasPSD-btn">Export as PSD</button>
+            <!-- ADD FUNCTIONALITY --> 
+
+            <button id="exportasPAT" class="exportasPAT-btn">Export as PAT</button>
+            <!-- ADD FUNCTIONALITY --> 
+
+            <button id="exportpatternfile" class="export-pattern-file-btn">Export Pattern File</button>
+            <!-- ADD FUNCTIONALITY --> 
+
+            <button id="product-mockup" class="product-mockup-btn">Product Mockup</button>
+            <!-- ADD FUNCTIONALITY --> 
+            
+        </div>
+
+    </div>
+
+    <!--            Settings Modal            -->
+    <div class="settings-modal" id="settingsModal">
+
+        <div class="settings-modal-background">
+            <h2>Export Options</h2>
+
+            <button id="saveprojectfile" class="saveprojectfile-btn">Save Project File</button>
+            <!-- ADD FUNCTIONALITY --> 
+            
+            <div class="app-profile-settings-header">
+                <h3>App Profile Settings</h3>
+                <button id="profile-settings-info" class="profile-settings-info-btn">?</button>
+                <!-- ADD FUNCTIONALITY -->
+            </div>
+
+            <div class="app-profile-settings-options">
+                <button id="importSettings" class="import-settings-btn">Import</button>
+                <button id="exportSettings" class="export-settings-btn">Export</button>
+                <!-- ADD FUNCTIONALITY -->
+            </div>
+            
+        </div>
+
+    </div>
+
+    <script>
+
+        // Hard refresh functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const updateButton = document.getElementById('updateButton');
+            if (updateButton) {
+                updateButton.addEventListener('click', function() {
+                    // Perform a hard refresh
+                    location.reload(true);
+                });
+            }
+        });
+    </script>
+
+    <script  src="../JS/Menus/modal_manager.js"></script>
+    <script type="module" src="../JS/script.js"></script>
+
+
+    <script  src="../JS/Menus/canvas_options_modal.js"></script>
+    <script  src="../JS/Menus/selection_tools_modal.js"></script>
+    
+</body>
+</html>

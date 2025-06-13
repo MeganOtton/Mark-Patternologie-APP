@@ -1,0 +1,45 @@
+* {
+    font-family: 'lato', sans-serif;
+}
+
+/* Main Style */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: 100vh;
+    margin: 0;
+    background: #ffffff;
+}
+
+.settings {
+    background-color:#7ec3ff;
+    width: 400px;
+    height: 400px;
+}
+
+.title {
+    font-weight: bolder;
+    font-size: 50px;
+}
+
+.form {
+    width: 100%;
+    margin-top: 50px;
+}
+.form input {
+    font-size: 18px;
+    padding: 10px, 20px, 10px, 10px;
+    border: 2px solid #ccc;
+    outline: 2px solid #ccc;
+    background: #fff;
+}
+.textbox-right {
+    float: right;
+    width: 300px;
+    height: 100px;
+}
+.center-btn {
+    text-align: center;
+}
