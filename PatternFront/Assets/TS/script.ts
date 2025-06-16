@@ -5,6 +5,31 @@ import { tileDrawing } from './drawing.js';
 const mode = (document.body.getAttribute('data-mode') as 'full' | 'half' ) || 'full';
 console.log('Mode:', mode);
 
+document.addEventListener('DOMContentLoaded', function() {
+  const btn = document.getElementById('canvas-settings-btn');
+  btn?.addEventListener('click', function() {
+    const container = document.getElementById('settings-container');
+    const template = document.getElementById('canvas-settings-template');
+    if (container && template) {
+      container.innerHTML = template.innerHTML;
+    }
+  });
+});
+
+document.getElementById('closeCanvasOptions')?.addEventListener('click', function() {
+  document.getElementById('canvas_options')?.classList.remove('show');
+});
+
+// Optional: close modal when clicking outside modal-content
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('canvas_options');
+    if (event.target === modal) {
+        if (modal) {
+            modal.classList.add('show');
+        }
+    }
+});
+
 const canvas = document.getElementById('drawingCanvas') as HTMLCanvasElement | null;
 if (!canvas) {
     throw new Error('Canvas element not found');

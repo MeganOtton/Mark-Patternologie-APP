@@ -10,6 +10,7 @@ const ctx = canvas.getContext('2d');
 if (!ctx) {
     throw new Error('2D context not available');
 }
+
 let isDrawing = false;
 function initCanvas() {
     console.log('Initializing canvas...');

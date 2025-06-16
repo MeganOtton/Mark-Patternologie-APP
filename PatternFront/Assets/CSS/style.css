@@ -15,6 +15,49 @@ body {
     background: #18181a;
 }
 
+.overlay {
+    display: none;
+    position: fixed;
+    background: rgba (0, 0, 0, 0.5);
+    z-index: 9;    
+}
+
+.modal.open.overlay.open {
+    display: block;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    padding: 0.5rem;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    border-radius: 0.25 rem;
+    z-index: 10;
+}
+
+.modal.show {
+    display: block;
+}
+
+.modal-content {
+    color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 16px;
+    top: 12px;
+    font-size: 28px;
+    cursor: pointer;
+}
+
 /* Base Menu */
 .Menu {
     width: 320px;
