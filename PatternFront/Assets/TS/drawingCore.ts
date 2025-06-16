@@ -96,11 +96,15 @@ export function getPointFromEvent(e:MouseEvent | TouchEvent): Point {
     return { x, y };
 }
 
-canvas.addEventListener('click', function(event) {
-    mouse.x = event.x;
-    mouse.y = event.y;
-    console.log(`Mouse clicked at: (${mouse.x}, ${mouse.y})`);
-});
+if (canvas) {
+    canvas.addEventListener('click', function(event) {
+        mouse.x = event.offsetX;
+        mouse.y = event.offsetY;
+        console.log(`Mouse clicked at: (${mouse.x}, ${mouse.y})`);
+    });
+} else {
+  console.error('Canvas element not found');
+}
 
 export function stopDrawinghalftile(ctx: CanvasRenderingContext2D, canvas:HTMLCanvasElement, gridDivisions:number) {
     if (!isDrawing) return;

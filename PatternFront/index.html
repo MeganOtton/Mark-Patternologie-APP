@@ -1,9 +1,9 @@
 <!--Patternfront Application
 //  Version: 0.0.3
 //  Changes: 
-//           - 
+//           - Conversion to Modal Canvas System
 //  To be added in next version: 
-//           - 
+//           - Bug fixes for Canvas Options Modal
 -->
 
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pattern Front End Design</title>
-    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="Assets/CSS/style.css">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="Assets/Favicon/favicon-96x96.png" sizes="96x96" />
@@ -23,9 +23,46 @@
     <link rel="manifest" href="Assets/Favicon/site.webmanifest" />
 </head>
 
-<body data-mode="half">
+<body>
     <div class="Menu">
-        <button class="button" id="canvasSettingsButton">Canvas Settings</button>
+        <button id="canvasSettingsButton">Canvas Settings</button>
+    
+    <!--            Canvas Settings Modal            -->
+    <div id="canvas-settings-modal" class="modal">
+      <div class="modal-content">
+        <span id="close-canvas-settings">x</span>
+            <h2>Canvas Settings</h2>
+
+            <!-- CHANGE THIS TO THE .PAT -->
+            <div class="file-input-wrapper">
+                <button class="file-input-button">Open Existing Project</button>
+                <input type="file" id="importFile" accept="image/*" class="hidden-file-input">
+            </div>
+
+            <h3>Pattern Type</h3>
+            <div class ="pattern-type">                
+                <label for="pattern-full">Full Pattern</label>
+                <input type="radio" id="pattern-full" name="pattern" value="full" checked>
+                <label for="pattern-halfdrop">Half-drop pattern</label> 
+                <input type="radio" id="pattern-halfdrop" name="pattern" value="halfdrop">
+            </div>
+
+            <h3>Pattern Tile Dimensions</h3>
+            <div class="pattern-tile-dimensions">
+                <input type="number" id="tileWidth" placeholder="Width (cm)" Class="Tile-width-input">
+                <input type="number" id="tileHeight" placeholder="Height (cm)" Class="Tile-height-input">
+            </div> 
+
+            <button id="showTileBorder" Class="Tile-Border-Switch">Show Tile Border</button>
+
+            <button id="showGuidelines" Class="Guidline-Switch">Show Guidelines</button>
+
+            <button id="symmetry" Class="Symmetry-Switch">Symmetry</button>    
+            
+            <button id="submit-canvas-settings" class="button">Submit</button>
+        </div>
+
+    </div>
         <br>
         <button class="button" id="selectionToolsButton">Selection Tool</button>
         <button class="button" id="brushToolsButton">Pen Tool</button>
@@ -57,54 +94,30 @@
             <button class="button;" id="updateButton" style="color: green;">Updated?</button>
             <button class="button" id="clearButton">CLEAR</button>
         </div>
-        <p>Version 0.0.2</p>
+        <p>Version 0.0.3</p>
     
 
 
     </div>
-
-    <div id="canvas-container">
-        <canvas id="drawingCanvas"></canvas>
-    </div>
-    <div id="gridContainer">
-    </div>
+    
     <div class="Menu">
    
     <!--                    MODALS                   -->
 
-    <!--            Canvas Settings Modal            -->
-    <div class="canvas-settings-modal" id="canvasSettingsModal">
+    <!-- Full Pattern Modal -->
+    <div id="full-modal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <span class="close" data-modal="full-modal">&times;</span>
+        <canvas id="full-canvas" width="600" height="600"></canvas>
+      </div>
+    </div>
 
-        <div class="canvas-settings-modal-background">
-            <h2>Canvas Settings</h2>
-
-            <!-- CHANGE THIS TO THE .PAT -->
-            <div class="file-input-wrapper">
-                <button class="file-input-button">Open Existing Project</button>
-                <input type="file" id="importFile" accept="image/*" class="hidden-file-input">
-            </div>
-
-            <h3>Pattern Tile Dimensions</h3>
-            <div class="pattern-tile-dimensions">
-                <input type="number" id="tileWidth" placeholder="Width (cm)" Class="Tile-width-input">
-                <input type="number" id="tileHeight" placeholder="Height (cm)" Class="Tile-height-input">
-            </div> 
-
-            <h3>Pattern Type</h3>
-            <select id="patternType">
-                <option value="block">Block Pattern</option>
-                <option value="halfDrop">Half Drop Pattern</option>
-                <option value="mirror">Mirror</option>
-            </select>
-
-            <button id="showTileBorder" Class="Tile-Border-Switch">Show Tile Border</button>
-
-            <button id="showGuidelines" Class="Guidline-Switch">Show Guidelines</button>
-
-            <button id="symmetry" Class="Symmetry-Switch">Symmetry</button>    
-            
-        </div>
-
+    <!-- Half Drop Pattern Modal -->
+    <div id="halfdrop-modal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <span class="close" data-modal="halfdrop-modal">&times;</span>
+        <canvas id="halfdrop-canvas" width="600" height="600"></canvas>
+      </div>
     </div>
 
     <!--            Selection Tools Modal            -->
@@ -487,6 +500,8 @@
 
     </div>
 
+    <canvas id="inactive-canvas"></canvas>
+
     <script>
 
         // Hard refresh functionality
@@ -500,13 +515,8 @@
             }
         });
     </script>
-
-    <script  src="../JS/Menus/modal_manager.js"></script>
-    <script type="module" src="../JS/script.js"></script>
-
-
-    <script  src="../JS/Menus/canvas_options_modal.js"></script>
-    <script  src="../JS/Menus/selection_tools_modal.js"></script>
-    
+    <script src="Assets/JS/Menus/modal_manager.js"></script>
+    <script src="Assets/JS/Menus/canvas_options_modal.js"></script>
+    <script src="Assets/JS/Menus/selection_tools_modal.js"></script>
 </body>
 </html>
