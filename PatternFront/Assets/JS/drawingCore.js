@@ -1,7 +1,7 @@
 import { drawingPath, allDrawings, isDrawing, setIsDrawing } from './drawingState.js';
 import { tileDrawingHalfDrop } from './halfdraw.js';
 import { tileDrawing } from './drawing.js';
-const canvas = document.getElementById('drawingCanvas');
+const canvas = document.getElementById('active-canvas');
 const mouse = {
     x: undefined,
     y: undefined

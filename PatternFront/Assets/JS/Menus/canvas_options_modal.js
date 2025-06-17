@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 console.log('canvas_options_modal.js loaded');
 const canvasSettingsButton = document.getElementById('canvasSettingsButton');
 const modal = document.getElementById('canvas-settings-modal');
@@ -35,9 +44,11 @@ else {
             const patternType = checkedInput === null || checkedInput === void 0 ? void 0 : checkedInput.value;
             // Use the same logic as your full/half-drop pattern modals
             if (patternType === 'full') {
+                document.body.setAttribute('data-mode', 'full');
                 showFullPattern();
             }
             else if (patternType === 'halfdrop') {
+                document.body.setAttribute('data-mode', 'half');
                 showHalfDropPattern();
             }
             modal.classList.remove('show');
@@ -61,65 +72,57 @@ function loadScript(src, isModule = false) {
 }
 // Example functions (replace with your actual logic)
 function showFullPattern() {
-    console.log('Full Drop Submit');
-    const inactiveCanvas = document.getElementById('inactive-canvas');
-    if (inactiveCanvas && inactiveCanvas.parentNode) {
-        inactiveCanvas.parentNode.removeChild(inactiveCanvas);
-        console.log('Inactive canvas removed');
-    }
-    else {
-        console.warn('Inactive canvas not found, creating active canvas anyway');
-    }
-    // ...existing code to show full pattern modal/canvas...
-    const container = document.getElementById('canvas-container');
-    if (container) {
-        // Create new active canvas
-        const activeCanvas = document.createElement('canvas');
-        activeCanvas.id = 'active-canvas';
-        activeCanvas.width = 800;
-        activeCanvas.height = 600;
-        activeCanvas.style.background = '#fff';
-        activeCanvas.style.display = 'block';
-        activeCanvas.style.margin = '60px auto';
-        // Insert the new canvas where the old one was
-        const container = document.getElementById('canvas-container');
-        if (container) {
-            container.innerHTML = '';
-            container.appendChild(activeCanvas);
+    return __awaiter(this, void 0, void 0, function* () {
+        console.log('Full Drop Submit');
+        const oldCanvas = document.getElementById('active-canvas') || document.getElementById('inactive-canvas');
+        if (oldCanvas && oldCanvas.parentNode) {
+            oldCanvas.innerHTML = '';
+            oldCanvas.parentNode.removeChild(oldCanvas);
+            console.log('Old canvas removed');
+            // ...existing code to show full pattern modal/canvas...
+            const container = document.getElementById('canvas-container');
+            if (container) {
+                // Create new active canvas
+                const activeCanvas = document.createElement('canvas');
+                activeCanvas.id = 'active-canvas';
+                activeCanvas.width = 600;
+                activeCanvas.height = 600;
+                activeCanvas.style.background = '#fff';
+                activeCanvas.style.display = 'block';
+                activeCanvas.style.margin = '60px auto';
+                document.body.appendChild(activeCanvas);
+                console.log('Active canvas added:', activeCanvas);
+                const { initCanvas } = yield import('../script.js');
+                initCanvas();
+            }
         }
-        else {
-            document.body.appendChild(activeCanvas);
-        }
-        console.log('Inactive canvas replaced with active canvas');
-    }
-    else {
-        console.error('Inactive canvas not found');
-    }
-    loadScript('Assets/JS/script.js', true); // module
+    });
 }
 function showHalfDropPattern() {
-    // ...existing code to show half-drop pattern modal/canvas...
-    console.log('Half Drop Submit');
-    const inactiveCanvas = document.getElementById('inactive-canvas');
-    if (inactiveCanvas && inactiveCanvas.parentNode) {
-        inactiveCanvas.parentNode.removeChild(inactiveCanvas);
-    }
-    // Create new active canvas
-    const activeCanvas = document.createElement('canvas');
-    activeCanvas.id = 'active-canvas';
-    activeCanvas.width = 800;
-    activeCanvas.height = 600;
-    activeCanvas.style.background = '#fff';
-    activeCanvas.style.display = 'block';
-    activeCanvas.style.margin = '60px auto';
-    // Insert the new canvas where the old one was
-    const modalElem = document.getElementById('canvas-settings-modal');
-    if (modalElem && modalElem.nextSibling) {
-        document.body.insertBefore(activeCanvas, modalElem.nextSibling);
-    }
-    else {
-        document.body.appendChild(activeCanvas);
-    }
-    console.log('Inactive canvas replaced with active canvas');
-    loadScript('Assets/JS/script.js', true); // module
+    return __awaiter(this, void 0, void 0, function* () {
+        // ...existing code to show half-drop pattern modal/canvas...
+        console.log('Half Drop Submit');
+        const oldCanvas = document.getElementById('active-canvas') || document.getElementById('inactive-canvas');
+        if (oldCanvas && oldCanvas.parentNode) {
+            oldCanvas.innerHTML = '';
+            oldCanvas.parentNode.removeChild(oldCanvas);
+            console.log('Old canvas removed');
+            // ...existing code to show full pattern modal/canvas...
+            const container = document.getElementById('canvas-container');
+            if (container) {
+                // Create new active canvas
+                const activeCanvas = document.createElement('canvas');
+                activeCanvas.id = 'active-canvas';
+                activeCanvas.width = 600;
+                activeCanvas.height = 600;
+                activeCanvas.style.background = '#fff';
+                activeCanvas.style.display = 'block';
+                activeCanvas.style.margin = '60px auto';
+                document.body.appendChild(activeCanvas);
+                console.log('Active canvas added:', activeCanvas);
+                const { initCanvas } = yield import('../script.js');
+                initCanvas();
+            }
+        }
+    });
 }

@@ -1,5 +1,7 @@
 export const gridDivisions = 3; // 3x3 grid
 export function drawGrid(ctx, canvas, gridDivisions) {
+    const width = canvas.width;
+    const height = canvas.height;
     const cellSize = canvas.width / gridDivisions;
     // Save the current context state
     ctx.save();
@@ -8,10 +10,10 @@ export function drawGrid(ctx, canvas, gridDivisions) {
     ctx.lineWidth = 1;
     // Draw vertical lines
     for (let i = 0; i < gridDivisions; i++) {
-        const x = i * cellSize;
+        const x = (i * width) / gridDivisions;
         ctx.beginPath();
         ctx.moveTo(x, 0);
-        ctx.lineTo(x, canvas.height);
+        ctx.lineTo(x, height);
         ctx.strokeStyle = '#ccc';
         ctx.lineWidth = 1;
         ctx.stroke();

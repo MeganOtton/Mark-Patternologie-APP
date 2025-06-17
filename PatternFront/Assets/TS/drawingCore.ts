@@ -3,7 +3,7 @@ import { drawGrid } from './grid.js';
 import { tileDrawingHalfDrop } from './halfdraw.js';
 import { tileDrawing } from './drawing.js';
 
-const canvas = document.getElementById('drawingCanvas') as HTMLCanvasElement;
+const canvas = document.getElementById('active-canvas') as HTMLCanvasElement;
 
 const mouse: { x: number | null | undefined; y: number | null | undefined } = {
     x: undefined,

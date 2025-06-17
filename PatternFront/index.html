@@ -1,9 +1,16 @@
 <!--Patternfront Application
-//  Version: 0.0.3
+//  Version: 0.0.4
 //  Changes: 
-//           - Conversion to Modal Canvas System
+//           - Minor revisions to Canvas Options Modal
+//           - Added hard refresh functionality
+//           - Half Drop and Full drop now functional
+//           - Removed Pages (we're back to one page)
+//           - Fixed Canvas grid problems
+//           - Added much needed init functionality for handling draws
+
 //  To be added in next version: 
-//           - Bug fixes for Canvas Options Modal
+//           - Style fixes for options modal
+//           - further investigation into initCanvas functionality to clean up code
 -->
 
 <!DOCTYPE html>
@@ -41,10 +48,10 @@
 
             <h3>Pattern Type</h3>
             <div class ="pattern-type">                
-                <label for="pattern-full">Full Pattern</label>
                 <input type="radio" id="pattern-full" name="pattern" value="full" checked>
-                <label for="pattern-halfdrop">Half-drop pattern</label> 
+                <label for="pattern-full">Full Pattern</label>
                 <input type="radio" id="pattern-halfdrop" name="pattern" value="halfdrop">
+                <label for="pattern-halfdrop">Half-drop pattern</label>
             </div>
 
             <h3>Pattern Tile Dimensions</h3>
@@ -94,7 +101,7 @@
             <button class="button;" id="updateButton" style="color: green;">Updated?</button>
             <button class="button" id="clearButton">CLEAR</button>
         </div>
-        <p>Version 0.0.3</p>
+        <p>Version 0.0.4</p>
     
 
 
@@ -499,9 +506,9 @@
         </div>
 
     </div>
-
-    <canvas id="inactive-canvas"></canvas>
-
+    <div id="canvas-container">
+        <canvas id="inactive-canvas"></canvas>
+    </div>
     <script>
 
         // Hard refresh functionality
@@ -516,7 +523,7 @@
         });
     </script>
     <script src="Assets/JS/Menus/modal_manager.js"></script>
-    <script src="Assets/JS/Menus/canvas_options_modal.js"></script>
     <script src="Assets/JS/Menus/selection_tools_modal.js"></script>
+    <script type="module" src="Assets/JS/Menus/canvas_options_modal.js"></script>
 </body>
 </html>
